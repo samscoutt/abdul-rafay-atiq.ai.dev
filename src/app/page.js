@@ -147,13 +147,13 @@ export default function Portfolio() {
       {/* Hero Section */}
       <div className="relative pt-16 pb-32 overflow-hidden">
         {/* Background Image - No gradient, no blending */}
-<div className="absolute inset-0">
-  <img 
-    src="/background.jpg" 
-    alt="Background" 
-    className="w-full h-full object-cover"
-  />
-</div>
+        <div className="absolute inset-0">
+          <img 
+            src="/background.jpg" 
+            alt="Background" 
+            className="w-full h-full object-cover"
+          />
+        </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
@@ -202,7 +202,6 @@ export default function Portfolio() {
         </div>
       </div>
 
-      {/* Rest of the code remains the same */}
       {/* Social Links */}
       <motion.div 
         initial="hidden"
@@ -213,15 +212,28 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-8">
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200">
+            <a 
+              href="https://github.com/anasnaeem80" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+            >
               <Github className="w-5 h-5" />
               <span>GitHub</span>
             </a>
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200">
+            <a 
+              href="https://www.linkedin.com/in/muhammad-anas-naeem-832229246" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+            >
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
             </a>
-            <a href="#" className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200">
+            <a 
+              href="mailto:anas.naeem.998@gmail.com" 
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+            >
               <Mail className="w-5 h-5" />
               <span>Email</span>
             </a>
@@ -579,13 +591,26 @@ export default function Portfolio() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Get Connected</h3>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-white transition duration-200">
+                <a 
+                  href="https://github.com/anasnaeem80" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition duration-200"
+                >
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition duration-200">
+                <a 
+                  href="https://www.linkedin.com/in/muhammad-anas-naeem-832229246" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition duration-200"
+                >
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-white transition duration-200">
+                <a 
+                  href="mailto:anas.naeem.998@gmail.com" 
+                  className="text-gray-400 hover:text-white transition duration-200"
+                >
                   <Mail className="w-6 h-6" />
                 </a>
               </div>
