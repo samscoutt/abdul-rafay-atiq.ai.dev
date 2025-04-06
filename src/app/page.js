@@ -81,7 +81,7 @@ export default function Portfolio() {
   const handleDownloadCV = () => {
     // Create a link to your CV file
     const link = document.createElement('a');
-    link.href = '/path-to-your-cv.pdf'; // Replace with the actual path to your CV file
+    link.href = '/Muhammad_Anas_Naeem_CV.pdf'; // Updated path to CV in public folder
     link.download = 'Muhammad_Anas_Naeem_CV.pdf'; // The name that will be used for the downloaded file
     document.body.appendChild(link);
     link.click();
@@ -146,15 +146,15 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <div className="relative pt-16 pb-32 overflow-hidden">
-        {/* Background Image - Added background image here */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-90">
-          {/* You can add your background image as a child element here */}
-          <img 
-            src="/path-to-your-background-image.jpg" // Replace with the actual path to your background image
-            alt="Background" 
-            className="w-full h-full object-cover mix-blend-overlay"
-          />
-        </div>
+        {/* Background Image - No gradient, no blending */}
+<div className="absolute inset-0">
+  <img 
+    src="/background.jpg" 
+    alt="Background" 
+    className="w-full h-full object-cover"
+  />
+</div>
+
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <motion.div 
@@ -169,7 +169,6 @@ export default function Portfolio() {
                 Building scalable, automated infrastructure and optimizing deployment pipelines to power the next generation of applications.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                {/* Added onClick handler to download CV */}
                 <button 
                   className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition duration-200"
                   onClick={handleDownloadCV}
@@ -190,10 +189,10 @@ export default function Portfolio() {
               variants={slideInFromRight}
               className="md:w-2/5 flex justify-center"
             >
-              {/* Profile Image - Updated to use your actual profile image */}
+              {/* Profile Image - Updated path */}
               <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                 <img 
-                  src="/path-to-your-profile-image.jpg" // Replace with the actual path to your profile image
+                  src="/profile.jpg" 
                   alt="Profile" 
                   className="w-full h-full object-cover" 
                 />
@@ -203,6 +202,7 @@ export default function Portfolio() {
         </div>
       </div>
 
+      {/* Rest of the code remains the same */}
       {/* Social Links */}
       <motion.div 
         initial="hidden"
@@ -251,10 +251,11 @@ export default function Portfolio() {
           <motion.div variants={item}>
             <div className="bg-white rounded-xl shadow-lg overflow-hidden">
               <div className="p-6 md:p-8">
-                <p className="text-gray-700 leading-relaxed">
-                  I'm an aspiring DevOps Engineer, actively building my skills in Linux OS, AWS, solution architecture, Docker, Kubernetes, Jenkins, Terraform, and CI/CD practices.
-                  I'm passionate about leveraging these technologies to create efficient, scalable, and resilient systems.
-                </p>
+              <p className="text-gray-700 leading-relaxed">
+  I&apos;m an aspiring DevOps Engineer, actively building my skills in Linux OS, AWS, solution architecture, Docker, Kubernetes, Jenkins, Terraform, and CI/CD practices.
+  I&apos;m passionate about leveraging these technologies to create efficient, scalable, and resilient systems.
+</p>
+
                 <p className="text-gray-700 leading-relaxed mt-4">
                   My goal is to contribute to teams by streamlining workflows, automating processes, and enabling smoother development and deployment cycles.
                   I believe in the power of automation and infrastructure as code to solve complex operational challenges.
