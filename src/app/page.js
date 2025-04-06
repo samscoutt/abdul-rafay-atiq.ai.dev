@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from "react";
-import { Mail, Github, Linkedin, Award, Briefcase, Code, Brain, GraduationCap, Phone } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Mail, Github, Linkedin, Award, Briefcase, Code, Brain, GraduationCap, Phone, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 
 // Define projects data
@@ -66,8 +66,29 @@ const scaleUp = {
 
 export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const navItems = ["About", "Experience", "Projects", "Skills", "Education", "Contact"];
+
+  // Check for user's preferred color scheme
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isDark = localStorage.getItem('darkMode') === 'true' || 
+                    (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      setDarkMode(isDark);
+    }
+  }, []);
+
+  // Apply dark mode class to document
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('darkMode', 'true');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('darkMode', 'false');
+    }
+  }, [darkMode]);
 
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -77,47 +98,64 @@ export default function Portfolio() {
     setMobileMenuOpen(false);
   };
 
-  // Function to handle CV download
   const handleDownloadCV = () => {
-    // Create a link to your CV file
     const link = document.createElement('a');
-    link.href = '/Muhammad_Anas_Naeem_CV.pdf'; // Updated path to CV in public folder
-    link.download = 'Muhammad_Anas_Naeem_CV.pdf'; // The name that will be used for the downloaded file
+    link.href = '/Muhammad_Anas_Naeem_CV.pdf';
+    link.download = 'Muhammad_Anas_Naeem_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="bg-gradient-to-b from-blue-50 via-indigo-50 to-white min-h-screen">
+    <div className="bg-gradient-to-b from-blue-50 via-indigo-50 to-white min-h-screen dark:bg-gradient-to-b dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Navbar */}
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b shadow-md"
+        className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b shadow-md dark:bg-gray-900/90 dark:border-gray-700"
       >
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-16">
-            <div className="font-bold text-lg text-blue-600">AN</div>
+            <div className="font-bold text-lg text-blue-600 dark:text-blue-400">AN</div>
             
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-6 text-sm font-medium">
-              {navItems.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className="text-gray-700 hover:text-blue-600 transition duration-200 px-2 py-1 rounded hover:bg-blue-50"
-                >
-                  {item}
-                </button>
-              ))}
+            <div className="flex items-center space-x-6">
+              {/* Dark mode toggle */}
+              <button 
+                onClick={toggleDarkMode}
+                className="p-2 rounded-full focus:outline-none"
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {darkMode ? (
+                  <Sun className="w-5 h-5 text-yellow-300" />
+                ) : (
+                  <Moon className="w-5 h-5 text-gray-700" />
+                )}
+              </button>
+              
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex space-x-6 text-sm font-medium">
+                {navItems.map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className="text-gray-700 hover:text-blue-600 transition duration-200 px-2 py-1 rounded hover:bg-blue-50 dark:text-gray-300 dark:hover:text-blue-400 dark:hover:bg-gray-800"
+                  >
+                    {item}
+                  </button>
+                ))}
+              </div>
             </div>
             
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button 
-                className="text-gray-600 p-2" 
+                className="text-gray-600 p-2 dark:text-gray-300" 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -129,12 +167,12 @@ export default function Portfolio() {
           
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-white py-2 px-4 space-y-2 border-t">
+            <div className="md:hidden bg-white py-2 px-4 space-y-2 border-t dark:bg-gray-800 dark:border-gray-700">
               {navItems.map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="block w-full text-left py-2 px-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded"
+                  className="block w-full text-left py-2 px-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-blue-400"
                 >
                   {item}
                 </button>
@@ -146,13 +184,14 @@ export default function Portfolio() {
 
       {/* Hero Section */}
       <div className="relative pt-16 pb-32 overflow-hidden">
-        {/* Background Image - No gradient, no blending */}
+        {/* Background Image */}
         <div className="absolute inset-0">
           <img 
             src="/background.jpg" 
             alt="Background" 
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
         </div>
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,13 +209,13 @@ export default function Portfolio() {
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
                 <button 
-                  className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition duration-200"
+                  className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition duration-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
                   onClick={handleDownloadCV}
                 >
                   Download CV
                 </button>
                 <button 
-                  className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-400 transition duration-200"
+                  className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-400 transition duration-200 dark:bg-blue-600 dark:hover:bg-blue-500"
                   onClick={() => scrollToSection('contact')}
                 >
                   Hire Me
@@ -189,7 +228,6 @@ export default function Portfolio() {
               variants={slideInFromRight}
               className="md:w-2/5 flex justify-center"
             >
-              {/* Profile Image - Updated path */}
               <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-2xl">
                 <img 
                   src="/profile.jpg" 
@@ -208,7 +246,7 @@ export default function Portfolio() {
         whileInView="show"
         variants={scaleUp}
         viewport={{ once: true }}
-        className="bg-white py-6 shadow-md mb-16"
+        className="bg-white py-6 shadow-md mb-16 dark:bg-gray-800"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center gap-8">
@@ -216,7 +254,7 @@ export default function Portfolio() {
               href="https://github.com/anasnaeem80" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
             >
               <Github className="w-5 h-5" />
               <span>GitHub</span>
@@ -225,14 +263,14 @@ export default function Portfolio() {
               href="https://www.linkedin.com/in/muhammad-anas-naeem-832229246" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
             >
               <Linkedin className="w-5 h-5" />
               <span>LinkedIn</span>
             </a>
             <a 
               href="mailto:anas.naeem.998@gmail.com" 
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200"
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
             >
               <Mail className="w-5 h-5" />
               <span>Email</span>
@@ -254,21 +292,20 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <Award className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">About Me</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">About Me</h2>
             </div>
           </motion.div>
           <motion.div variants={item}>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6 md:p-8">
-              <p className="text-gray-700 leading-relaxed">
-  I&apos;m an aspiring DevOps Engineer, actively building my skills in Linux OS, AWS, solution architecture, Docker, Kubernetes, Jenkins, Terraform, and CI/CD practices.
-  I&apos;m passionate about leveraging these technologies to create efficient, scalable, and resilient systems.
-</p>
-
-                <p className="text-gray-700 leading-relaxed mt-4">
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+                  I&apos;m an aspiring DevOps Engineer, actively building my skills in Linux OS, AWS, solution architecture, Docker, Kubernetes, Jenkins, Terraform, and CI/CD practices.
+                  I&apos;m passionate about leveraging these technologies to create efficient, scalable, and resilient systems.
+                </p>
+                <p className="text-gray-700 leading-relaxed mt-4 dark:text-gray-300">
                   My goal is to contribute to teams by streamlining workflows, automating processes, and enabling smoother development and deployment cycles.
                   I believe in the power of automation and infrastructure as code to solve complex operational challenges.
                 </p>
@@ -288,35 +325,35 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <Briefcase className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <Briefcase className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">Experience</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Experience</h2>
             </div>
           </motion.div>
           <motion.div variants={item}>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6 md:p-8">
                 <div className="border-l-4 border-blue-500 pl-4 py-1">
-                  <h3 className="text-xl font-semibold text-gray-800">DevOps Engineer (Projects)</h3>
-                  <p className="text-gray-600 mt-1">Self-directed projects & hands-on learning</p>
-                  <p className="text-gray-500 text-sm mt-1">2023 - Present</p>
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">DevOps Engineer (Projects)</h3>
+                  <p className="text-gray-600 mt-1 dark:text-gray-400">Self-directed projects & hands-on learning</p>
+                  <p className="text-gray-500 text-sm mt-1 dark:text-gray-500">2023 - Present</p>
                 </div>
                 <div className="mt-6">
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Currently working on various hands-on projects in DevOps and Cloud deployment to build practical experience with industry-standard tools and methodologies.
                   </p>
-                  <ul className="mt-4 space-y-2 text-gray-700">
+                  <ul className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
                     <li className="flex items-start">
-                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-blue-500 mr-2 dark:text-blue-400">•</span>
                       <span>Automating infrastructure deployment with Terraform and AWS</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-blue-500 mr-2 dark:text-blue-400">•</span>
                       <span>Building CI/CD pipelines with Jenkins and GitHub Actions</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-500 mr-2">•</span>
+                      <span className="text-blue-500 mr-2 dark:text-blue-400">•</span>
                       <span>Containerizing applications with Docker and Kubernetes</span>
                     </li>
                   </ul>
@@ -337,10 +374,10 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <Code className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">Projects</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Projects</h2>
             </div>
           </motion.div>
           <motion.div 
@@ -352,14 +389,14 @@ export default function Portfolio() {
                 key={index}
                 variants={item}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300"
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 dark:bg-gray-800 dark:hover:shadow-gray-700/50"
               >
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3">{project.title}</h3>
-                  <p className="text-gray-700 mb-4">{project.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-3 dark:text-white">{project.title}</h3>
+                  <p className="text-gray-700 mb-4 dark:text-gray-300">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                      <span key={tagIndex} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs dark:bg-blue-900/50 dark:text-blue-400">
                         {tag}
                       </span>
                     ))}
@@ -381,47 +418,47 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <Brain className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">Skills</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Skills</h2>
             </div>
           </motion.div>
           <motion.div 
             variants={container}
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Cloud & Infrastructure</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">Cloud & Infrastructure</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">AWS</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Terraform</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Ansible</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Linux</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">AWS</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Terraform</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Ansible</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Linux</span>
                 </div>
               </div>
             </motion.div>
             
-            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">Containerization</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">Containerization</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Docker</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Kubernetes</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Helm</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Docker</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Kubernetes</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Helm</span>
                 </div>
               </div>
             </motion.div>
             
-            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">CI/CD & Monitoring</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">CI/CD & Monitoring</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Jenkins</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">GitHub Actions</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Prometheus</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full">Grafana</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Jenkins</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">GitHub Actions</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Prometheus</span>
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Grafana</span>
                 </div>
               </div>
             </motion.div>
@@ -439,31 +476,31 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <GraduationCap className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <GraduationCap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">Education</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Education</h2>
             </div>
           </motion.div>
           <motion.div variants={item}>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-800">BS Software Engineering</h3>
-                    <p className="text-gray-600 mt-1">University of Karachi, Department of Computer Science</p>
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white">BS Software Engineering</h3>
+                    <p className="text-gray-600 mt-1 dark:text-gray-400">University of Karachi, Department of Computer Science</p>
                   </div>
                   <div className="mt-2 md:mt-0">
-                    <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                    <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400">
                       2020 - 2025 (Expected)
                     </div>
                   </div>
                 </div>
                 <div className="mt-6">
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 dark:text-gray-300">
                     Studying Software Engineering with a focus on DevOps practices, cloud computing, and modern software development methodologies.
                   </p>
-                  <p className="text-gray-700 mt-2">
+                  <p className="text-gray-700 mt-2 dark:text-gray-300">
                     <strong>Location:</strong> Karachi, Pakistan
                   </p>
                 </div>
@@ -483,71 +520,83 @@ export default function Portfolio() {
         >
           <motion.div variants={item}>
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg">
-                <Phone className="w-6 h-6 text-blue-600" />
+              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+                <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-800">Contact</h2>
+              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Contact</h2>
             </div>
           </motion.div>
           <motion.div 
             variants={container}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">Get In Touch</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Get In Touch</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <Mail className="w-5 h-5 text-blue-600 mr-3 mt-1" />
+                    <Mail className="w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400" />
                     <div>
-                      <p className="text-gray-600 text-sm">Email</p>
-                      <p className="text-gray-800">anas.naeem.998@gmail.com</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">Email</p>
+                      <p className="text-gray-800 dark:text-gray-200">anas.naeem.998@gmail.com</p>
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <Phone className="w-5 h-5 text-blue-600 mr-3 mt-1" />
+                    <Phone className="w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400" />
                     <div>
-                      <p className="text-gray-600 text-sm">Phone</p>
-                      <p className="text-gray-800">+92 324 2009744</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">Phone</p>
+                      <p className="text-gray-800 dark:text-gray-200">+92 324 2009744</p>
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-blue-600 mr-3 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <div>
-                      <p className="text-gray-600 text-sm">Location</p>
-                      <p className="text-gray-800">Karachi, Pakistan</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">Location</p>
+                      <p className="text-gray-800 dark:text-gray-200">Karachi, Pakistan</p>
                     </div>
                   </li>
                   <li className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-blue-600 mr-3 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
                     <div>
-                      <p className="text-gray-600 text-sm">Languages</p>
-                      <p className="text-gray-800">Urdu, English</p>
+                      <p className="text-gray-600 text-sm dark:text-gray-400">Languages</p>
+                      <p className="text-gray-800 dark:text-gray-200">Urdu, English</p>
                     </div>
                   </li>
                 </ul>
               </div>
             </motion.div>
             
-            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <motion.div variants={item} className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800">
               <div className="p-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">Send Message</h3>
+                <h3 className="text-xl font-semibold text-gray-800 mb-4 dark:text-white">Send Message</h3>
                 <form>
                   <div className="mb-4">
-                    <input type="text" placeholder="Your Name" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input 
+                      type="text" 
+                      placeholder="Your Name" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" 
+                    />
                   </div>
                   <div className="mb-4">
-                    <input type="email" placeholder="Your Email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input 
+                      type="email" 
+                      placeholder="Your Email" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400" 
+                    />
                   </div>
                   <div className="mb-4">
-                    <textarea placeholder="Your Message" rows="4" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <textarea 
+                      placeholder="Your Message" 
+                      rows="4" 
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
+                    ></textarea>
                   </div>
-                  <button className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-500 transition duration-200">
+                  <button className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-500 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-600">
                     Send Message
                   </button>
                 </form>
