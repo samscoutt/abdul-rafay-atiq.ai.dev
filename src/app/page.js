@@ -25,8 +25,43 @@ const projects = [
     title: "AWS Serverless App",
     description: "API Gateway, Terraform, GitHub Actions for serverless application deployment.",
     tags: ["Serverless", "API Gateway", "GitHub Actions"]
-  }
+  },
+  {
+    title: "Automated Cloud Infrastructure with Terraform & Ansible",
+    description: "Automated deployment of AWS EC2 instances, security groups, and networking using Terraform, and seamless server configuration with Ansible.",
+    tags: ["Terraform", "Ansible", "AWS EC2", "VPC", "Security Groups", "Jenkins (CI/CD)"]
+  },
+  {
+    title: "Resource Manager - Real-time CPU Monitoring and Analysis",
+    description: "A real-time CPU monitoring and analysis tool offering live visualizations, critical alerts, historical trends, and process tracking, all containerized with Docker.",
+    tags: ["Python", "Docker", "Grafana"]
+  },
+  {
+    title: "Todo App Deployment on Kubernetes",
+    description: "A Todo App built with React and Firebase for real-time storage, containerized using Docker, and deployed on Docker Hub.",
+    tags: ["Docker", "Kubernetes", "Docker Hub"]
+  },
 ];
+
+// Tag color configurations
+const tagColors = [
+  // { bg: 'bg-blue-100', text: 'text-blue-800', darkBg: 'dark:bg-blue-900/50', darkText: 'dark:text-blue-400' },
+  { bg: 'bg-green-100', text: 'text-green-800', darkBg: 'dark:bg-green-900/50', darkText: 'dark:text-green-400' },
+  // { bg: 'bg-purple-100', text: 'text-purple-800', darkBg: 'dark:bg-purple-900/50', darkText: 'dark:text-purple-400' },
+  // { bg: 'bg-yellow-100', text: 'text-yellow-800', darkBg: 'dark:bg-yellow-900/50', darkText: 'dark:text-yellow-400' },
+  // { bg: 'bg-red-100', text: 'text-red-800', darkBg: 'dark:bg-red-900/50', darkText: 'dark:text-red-400' },
+  // { bg: 'bg-indigo-100', text: 'text-indigo-800', darkBg: 'dark:bg-indigo-900/50', darkText: 'dark:text-indigo-400' },
+  // { bg: 'bg-pink-100', text: 'text-pink-800', darkBg: 'dark:bg-pink-900/50', darkText: 'dark:text-pink-400' },
+  // { bg: 'bg-teal-100', text: 'text-teal-800', darkBg: 'dark:bg-teal-900/50', darkText: 'dark:text-teal-400' },
+];
+
+// Function to get color based on tag name (consistent colors for same tags)
+const getTagColor = (tag) => {
+  // Create a simple hash from the tag name to get consistent colors
+  const hash = Array.from(tag).reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const index = hash % tagColors.length;
+  return tagColors[index];
+};
 
 // Animation variants
 const container = {
@@ -395,11 +430,17 @@ export default function Portfolio() {
                   <h3 className="text-xl font-semibold text-gray-800 mb-3 dark:text-white">{project.title}</h3>
                   <p className="text-gray-700 mb-4 dark:text-gray-300">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs dark:bg-blue-900/50 dark:text-blue-400">
-                        {tag}
-                      </span>
-                    ))}
+                    {project.tags.map((tag, tagIndex) => {
+                      const color = getTagColor(tag);
+                      return (
+                        <span 
+                          key={tagIndex} 
+                          className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+                        >
+                          {tag}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>
@@ -432,10 +473,17 @@ export default function Portfolio() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">Cloud & Infrastructure</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">AWS</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Terraform</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Ansible</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Linux</span>
+                  {['AWS', 'Terraform', 'Ansible', 'Linux'].map((skill, index) => {
+                    const color = getTagColor(skill);
+                    return (
+                      <span 
+                        key={index}
+                        className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+                      >
+                        {skill}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
@@ -444,9 +492,17 @@ export default function Portfolio() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">Containerization</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Docker</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Kubernetes</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Helm</span>
+                  {['Docker', 'Kubernetes', 'Helm'].map((skill, index) => {
+                    const color = getTagColor(skill);
+                    return (
+                      <span 
+                        key={index}
+                        className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+                      >
+                        {skill}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
@@ -455,10 +511,17 @@ export default function Portfolio() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white">CI/CD & Monitoring</h3>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Jenkins</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">GitHub Actions</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Prometheus</span>
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/50 dark:text-blue-400">Grafana</span>
+                  {['Jenkins', 'GitHub Actions', 'Prometheus', 'Grafana'].map((skill, index) => {
+                    const color = getTagColor(skill);
+                    return (
+                      <span 
+                        key={index}
+                        className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+                      >
+                        {skill}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
@@ -492,7 +555,7 @@ export default function Portfolio() {
                   </div>
                   <div className="mt-2 md:mt-0">
                     <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400">
-                      2020 - 2025 (Expected)
+                      2022 - Active
                     </div>
                   </div>
                 </div>
