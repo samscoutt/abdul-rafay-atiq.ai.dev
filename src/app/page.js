@@ -43,16 +43,33 @@ const projects = [
   },
 ];
 
+// Define certifications data
+const certifications = [
+  {
+    title: "DevOps Master Class (Linux, Python, GitHub)",
+    issuer: "TrainWithShubham",
+    date: "2024",
+  },
+  {
+    title: "Linux: The Complete Guide)",
+    issuer: "Udemy",
+    date: "2024",
+  },
+  {
+    title: "AWS Essentials: A Complete Beginner's Guide)",
+    issuer: "Udemy",
+    date: "2025",
+  },
+  {
+    title: "Mastering AWS Serverless: Hands-On with Core AWS Services",
+    issuer: "Udemy",
+    date: "2025",
+  },
+];
+
 // Tag color configurations
 const tagColors = [
-  // { bg: 'bg-blue-100', text: 'text-blue-800', darkBg: 'dark:bg-blue-900/50', darkText: 'dark:text-blue-400' },
   { bg: 'bg-green-100', text: 'text-green-800', darkBg: 'dark:bg-green-900/50', darkText: 'dark:text-green-400' },
-  // { bg: 'bg-purple-100', text: 'text-purple-800', darkBg: 'dark:bg-purple-900/50', darkText: 'dark:text-purple-400' },
-  // { bg: 'bg-yellow-100', text: 'text-yellow-800', darkBg: 'dark:bg-yellow-900/50', darkText: 'dark:text-yellow-400' },
-  // { bg: 'bg-red-100', text: 'text-red-800', darkBg: 'dark:bg-red-900/50', darkText: 'dark:text-red-400' },
-  // { bg: 'bg-indigo-100', text: 'text-indigo-800', darkBg: 'dark:bg-indigo-900/50', darkText: 'dark:text-indigo-400' },
-  // { bg: 'bg-pink-100', text: 'text-pink-800', darkBg: 'dark:bg-pink-900/50', darkText: 'dark:text-pink-400' },
-  // { bg: 'bg-teal-100', text: 'text-teal-800', darkBg: 'dark:bg-teal-900/50', darkText: 'dark:text-teal-400' },
 ];
 
 // Function to get color based on tag name (consistent colors for same tags)
@@ -103,7 +120,7 @@ export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
 
-  const navItems = ["About", "Experience", "Projects", "Skills", "Education", "Contact"];
+  const navItems = ["About", "Experience", "Projects", "Skills", "Certifications", "Education", "Contact"];
 
   // Check for user's preferred color scheme
   useEffect(() => {
@@ -218,101 +235,135 @@ export default function Portfolio() {
       </motion.nav>
 
       {/* Hero Section */}
-      <div className="relative pt-16 pb-32 overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src="/background.jpg" 
-            alt="Background" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
-        </div>
+<div className="relative pt-16 pb-28 overflow-hidden bg-gradient-to-b from-blue-900 to-black">
+  {/* Background Image with Overlay - with reduced height */}
+  <div className="absolute inset-0">
+    {/* Using a public placeholder image with reduced height */}
+    <div 
+      className="w-full h-full bg-[url('/api/placeholder/1920/800')] bg-cover bg-top opacity-60"
+      style={{ maxHeight: "85vh" }}
+    ></div>
+    <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-black/70"></div>
+    
+    {/* Decorative Elements */}
+    <div className="absolute top-0 right-0 w-full h-full overflow-hidden opacity-10">
+      <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-blue-400 blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-80 h-80 rounded-full bg-indigo-500 blur-3xl"></div>
+    </div>
+  </div>
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <motion.div 
-              initial="hidden"
-              animate="show"
-              variants={slideInFromLeft}
-              className="text-center md:text-left text-white md:w-1/2 mb-10 md:mb-0"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">Muhammad Anas Naeem</h1>
-              <p className="text-xl text-blue-100 mb-6">DevOps Engineer</p>
-              <p className="text-blue-100 max-w-lg mb-8">
-                Building scalable, automated infrastructure and optimizing deployment pipelines to power the next generation of applications.
-              </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                <button 
-                  className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition duration-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-                  onClick={handleDownloadCV}
-                >
-                  Download CV
-                </button>
-                <button 
-                  className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-400 transition duration-200 dark:bg-blue-600 dark:hover:bg-blue-500"
-                  onClick={() => scrollToSection('contact')}
-                >
-                  Hire Me
-                </button>
-              </div>
-            </motion.div>
-            <motion.div 
-              initial="hidden"
-              animate="show"
-              variants={slideInFromRight}
-              className="md:w-2/5 flex justify-center"
-            >
-              <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-2xl">
-                <img 
-                  src="/profile.jpg" 
-                  alt="Profile" 
-                  className="w-full h-full object-cover" 
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Social Links */}
+  <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col md:flex-row items-center justify-between">
       <motion.div 
         initial="hidden"
-        whileInView="show"
-        variants={scaleUp}
-        viewport={{ once: true }}
-        className="bg-white py-6 shadow-md mb-16 dark:bg-gray-800"
+        animate="show"
+        variants={slideInFromLeft}
+        className="text-center md:text-left text-white md:w-1/2 mb-10 md:mb-0 z-10"
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-8">
-            <a 
-              href="https://github.com/anasnaeem80" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
-            >
-              <Github className="w-5 h-5" />
-              <span>GitHub</span>
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/muhammad-anas-naeem-832229246" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
-            >
-              <Linkedin className="w-5 h-5" />
-              <span>LinkedIn</span>
-            </a>
-            <a 
-              href="mailto:anas.naeem.998@gmail.com" 
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-200 dark:text-gray-300 dark:hover:text-blue-400"
-            >
-              <Mail className="w-5 h-5" />
-              <span>Email</span>
-            </a>
-          </div>
+        <span className="inline-block px-4 py-1 mb-4 text-sm font-medium text-blue-300 bg-blue-900/50 rounded-full border border-blue-400/30 backdrop-blur-sm">
+          DevOps Specialist
+        </span>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+          Muhammad Anas Naeem
+        </h1>
+        <p className="text-xl text-blue-100 mb-6 font-medium">DevOps Engineer</p>
+        <p className="text-blue-100 max-w-lg mb-8 leading-relaxed">
+          Building scalable, automated infrastructure and optimizing deployment pipelines to power the next generation of applications.
+        </p>
+        <div className="flex flex-wrap justify-center md:justify-start gap-4">
+          <button 
+            className="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg shadow-md hover:bg-blue-50 transition duration-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transform hover:-translate-y-1"
+            onClick={handleDownloadCV}
+          >
+            <span className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download CV
+            </span>
+          </button>
+          <button 
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-medium rounded-lg shadow-md hover:from-blue-600 hover:to-indigo-700 transition duration-200 transform hover:-translate-y-1"
+            onClick={() => scrollToSection('contact')}
+          >
+            <span className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              Hire Me
+            </span>
+          </button>
+        </div>
+        
+        {/* Merged Social Icons with Labels */}
+        <div className="mt-8 flex justify-center md:justify-start space-x-6">
+          <a 
+            href="https://github.com/anasnaeem80" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200"
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <a 
+            href="https://www.linkedin.com/in/muhammad-anas-naeem-832229246" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200"
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+          <a 
+            href="mailto:anas.naeem.998@gmail.com" 
+            className="flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200"
+          >
+            <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+            </svg>
+            <span>Email</span>
+          </a>
         </div>
       </motion.div>
+      
+      <motion.div 
+        initial="hidden"
+        animate="show"
+        variants={slideInFromRight}
+        className="md:w-2/5 flex justify-center z-10"
+      >
+        <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm transform hover:scale-105 transition duration-300">
+          <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-600/20"></div>
+          {/* Using your own profile image */}
+          <img 
+            src="/profile.jpg" 
+            alt="Muhammad Anas Naeem" 
+            className="w-full h-full object-cover" 
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = '/api/placeholder/300/300';
+            }}
+          />
+          
+          {/* Glowing effect */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse"></div>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+  
+  {/* Animated wave bottom */}
+  <div className="absolute bottom-0 left-0 right-0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" className="w-full h-24">
+      <path fill="#ffffff" fillOpacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,117.3C672,107,768,117,864,128C960,139,1056,149,1152,144C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+</div>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
@@ -399,55 +450,65 @@ export default function Portfolio() {
         </motion.section>
 
         {/* Projects Section */}
-        <motion.section
-          id="projects"
-          initial="hidden"
-          whileInView="show"
-          variants={container}
-          viewport={{ once: true }}
-          className="scroll-mt-20"
-        >
-          <motion.div variants={item}>
-            <div className="flex items-center gap-4 mb-8">
-              <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
-                <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Projects</h2>
-            </div>
-          </motion.div>
-          <motion.div 
-            variants={container}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            {projects.map((project, index) => (
-              <motion.div 
-                key={index}
-                variants={item}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 dark:bg-gray-800 dark:hover:shadow-gray-700/50"
-              >
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3 dark:text-white">{project.title}</h3>
-                  <p className="text-gray-700 mb-4 dark:text-gray-300">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, tagIndex) => {
-                      const color = getTagColor(tag);
-                      return (
-                        <span 
-                          key={tagIndex} 
-                          className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
-                        >
-                          {tag}
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.section>
-
+<motion.section
+  id="projects"
+  initial="hidden"
+  whileInView="show"
+  variants={container}
+  viewport={{ once: true }}
+  className="scroll-mt-20"
+>
+  <motion.div variants={item}>
+    <div className="flex items-center gap-4 mb-8">
+      <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+        <Code className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      </div>
+      <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Projects</h2>
+    </div>
+  </motion.div>
+  <motion.div 
+    variants={container}
+    className="grid grid-cols-1 md:grid-cols-2 gap-6"
+  >
+    {projects.map((project, index) => (
+      <motion.div 
+        key={index}
+        variants={item}
+        whileHover={{ y: -5 }}
+        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition duration-300 dark:bg-gray-800 dark:hover:shadow-gray-700/50"
+      >
+        <div className="p-6">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3 dark:text-white">{project.title}</h3>
+          <p className="text-gray-700 mb-4 dark:text-gray-300">{project.description}</p>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {project.tags.map((tag, tagIndex) => {
+              const color = getTagColor(tag);
+              return (
+                <span 
+                  key={tagIndex} 
+                  className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+                >
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition duration-200 dark:bg-gray-700 dark:hover:bg-gray-600"
+            >
+              <Github className="w-5 h-5 mr-2" />
+              View Code
+            </a>
+          )}
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</motion.section>
         {/* Skills Section */}
         <motion.section
           id="skills"
@@ -527,6 +588,51 @@ export default function Portfolio() {
             </motion.div>
           </motion.div>
         </motion.section>
+
+        {/* Certifications Section */}
+<motion.section
+  id="certifications"
+  initial="hidden"
+  whileInView="show"
+  variants={container}
+  viewport={{ once: true }}
+  className="scroll-mt-20"
+>
+  <motion.div variants={item}>
+    <div className="flex items-center gap-4 mb-8">
+      <div className="bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50">
+        <Award className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      </div>
+      <h2 className="text-3xl font-bold text-gray-800 dark:text-white">Certifications</h2>
+    </div>
+  </motion.div>
+  <motion.div 
+    variants={container}
+    className="grid grid-cols-1 gap-6"
+  >
+    {certifications.map((cert, index) => (
+      <motion.div 
+        key={index}
+        variants={item}
+        className="bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800"
+      >
+        <div className="p-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{cert.title}</h3>
+              <p className="text-gray-600 mt-1 dark:text-gray-400">{cert.issuer}</p>
+            </div>
+            <div className="mt-2 md:mt-0">
+              <div className="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400">
+                {cert.date}
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</motion.section>
 
         {/* Education Section */}
         <motion.section
