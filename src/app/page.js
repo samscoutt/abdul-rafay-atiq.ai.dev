@@ -495,11 +495,13 @@ export default function Portfolio() {
             <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
               <div className='p-6 md:p-8'>
                 <p className='text-gray-700 leading-relaxed dark:text-gray-300'>
-                  I&apos;m an aspiring DevOps Engineer, actively building my
-                  skills in Linux OS, AWS, solution architecture, Docker,
+                  I&apos;m a DevOps enthusiast with 1.5 years of hands-on
+                  experience in Linux OS, AWS, solution architecture, Docker,
                   Kubernetes, Jenkins, Terraform, and CI/CD practices. I&apos;m
-                  passionate about leveraging these technologies to create
-                  efficient, scalable, and resilient systems.
+                  passionate about leveraging these tools to build efficient,
+                  scalable, and resilient infrastructure. Currently, I&apos;m
+                  seeking a Junior DevOps Engineer role where I can continue
+                  growing and contributing to impactful engineering teams.
                 </p>
                 <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
                   My goal is to contribute to teams by streamlining workflows,
@@ -532,6 +534,8 @@ export default function Portfolio() {
               </h2>
             </div>
           </motion.div>
+
+          {/* Existing Experience: Projects */}
           <motion.div variants={item}>
             <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
               <div className='p-6 md:p-8'>
@@ -576,6 +580,59 @@ export default function Portfolio() {
                       </span>
                       <span>
                         Containerizing applications with Docker and Kubernetes
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* New Experience: 303 Inc. */}
+          <motion.div variants={item} className='mt-8'>
+            <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+              <div className='p-6 md:p-8'>
+                <div className='border-l-4 border-blue-500 pl-4 py-1'>
+                  <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+                    DevOps Intern — 303 Inc.
+                  </h3>
+                  <p className='text-gray-600 mt-1 dark:text-gray-400'>
+                    Mar 2025 – May 2025
+                  </p>
+                </div>
+                <div className='mt-6'>
+                  <p className='text-gray-700 dark:text-gray-300'>
+                    As a DevOps Intern at 303 Inc., I applied and refined my
+                    DevOps skills by contributing to real-world infrastructure
+                    and CI/CD workflows. This internship built on my 1.5 years
+                    of DevOps experience.
+                  </p>
+                  <ul className='mt-4 space-y-2 text-gray-700 dark:text-gray-300'>
+                    <li className='flex items-start'>
+                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
+                        •
+                      </span>
+                      <span>
+                        Streamlined CI/CD pipelines using Jenkins and GitHub
+                        Actions
+                      </span>
+                    </li>
+                    <li className='flex items-start'>
+                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
+                        •
+                      </span>
+                      <span>
+                        Automated infrastructure deployments with Terraform and
+                        Ansible
+                      </span>
+                    </li>
+                    <li className='flex items-start'>
+                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
+                        •
+                      </span>
+                      <span>
+                        Monitored application and system health using Prometheus
+                        and Grafana
                       </span>
                     </li>
                   </ul>
