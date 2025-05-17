@@ -77,12 +77,12 @@ const certifications = [
     date: "2024",
   },
   {
-    title: "Linux: The Complete Guide)",
+    title: "Linux: The Complete Guide",
     issuer: "Udemy",
     date: "2024",
   },
   {
-    title: "AWS Essentials: A Complete Beginner's Guide)",
+    title: "AWS Essentials: A Complete Beginner's Guide",
     issuer: "Udemy",
     date: "2025",
   },
