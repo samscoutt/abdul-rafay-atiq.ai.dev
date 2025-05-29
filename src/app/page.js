@@ -1,5 +1,5 @@
 "use client";
-
+import Image from 'next/image';
 import React, { useState, useEffect } from "react";
 import {
   Mail,
@@ -19,79 +19,112 @@ import { motion } from "framer-motion";
 // Define projects data
 const projects = [
   {
-    title: "Automated Backup System",
+    title: "🧠🛒 AI-Driven CRM + Marketplace for PPE & Eyewear Fitting (Milestone Project)",
     description:
-      "Jenkins + rclone to AWS S3/Google Drive for automated and scheduled backup operations.",
-    tags: ["Jenkins", "AWS S3", "rclone"],
+      "A large-scale, AI-powered CRM integrated with a marketplace for PPE and eyewear, featuring an intelligent recommendation engine that uses facial scans to match employees with the perfect eyewear — by brand, size, and fit — with high precision.🧠 Uses Google’s Mesh 478-point model + OpenCV for facial landmark detection🛍️ Includes a complete marketplace module for PPE and eyewear products 🤖 AI engine recommends eyewear fit per user’s face geometry 🧩 Built for enterprises needing scalable employee onboarding + gear allocation. Other than that it's a full fledged large scale application that encompasses encompasses more than just storing customer data. It integrates all business processes, communication channels, and departments that interact with employes, primarily labours and service. It uses AI and advanced analytics to offer real-time reporting and got separate sections of employee | partner | admin | superadmin" ,
+    tags: ["Python", "Redis", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub" ],
   },
   {
-    title: "AI/ML Deployment Pipeline",
+    title: "🏎️📲 – Social Commerce Platform for Car & Bike Enthusiasts",
     description:
-      "CI/CD with Jenkins, Kubernetes, Docker, and Terraform for machine learning model deployment.",
-    tags: ["Docker", "Kubernetes", "Terraform"],
+      "🚘 Buy, Sell & List: Post listings for cars, bikes, and parts with images, specs, and pricing🧑‍🤝‍🧑 Auto Communities: Create & join interest-based groups (e.g. EV lovers, 4x4 fans, classic car collectors) 🎥 Live Broadcasting: Stream live from car meets or garages — just like Instagram Live💬 Real-Time Chat: 1-on-1 DMs, group chats, & threaded discussions 📣 Event Boards: Organize or RSVP to car shows, races, or meetups👤 Profile System: Follow users, view timelines, share builds, and update car collections 🔍 Search Boosting: Paid profile boosting and featured listings — rank higher in search🛡️ Role-Based Groups: Full role control (Owner, Admin, Member) in each community 📊 Dashboard Analytics: Track listing views, engagement, and reach🎯 Personalized Feed: Posts, stories, listings, and events based on your niche and interests" ,
+    tags: ["Python", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub" ],
+  },
+
+  {
+    title: "🛠️🛒 Smart Gear Management & E-commerce System",
+    description:
+      "A robust, scalable application that merges gear selling, real-time communication, stock control, and location-aware logistics — ideal for modern retailers and marketplaces. 💼 Features: Seamless gear buying/selling workflows Real-time chat between buyers & sellers Location tracking for order and seller coordination Booking & stock management with automated updates Integrated payment flows (Stripe-ready) Designed with enterprise scalability in mind" ,
+    tags: ["Python", "Docker", "Django", "Django rest framework", "PostgresQL", "scalable API architecture", "python-dotenv", "opencv", "stripe", "Git", "GitHub", "#LocationTracking", "RealTimeChat" ],
   },
   {
-    title: "Microservices CI/CD",
+    title: "🩺 AI-Powered Voice & Vision Medical Assistant ",
     description:
-      "Docker, Kubernetes, Nexus, SonarQube, Grafana implementation for microservices architecture.",
+      "A smart prototype that combines voice and image input to deliver accurate, AI-driven medical feedback — built for accessibility and remote diagnostics.🧠 Understands symptoms from voice and images using LLaMA 4 Maverick 👁️ Analyzes medical visuals with Groq’s multimodal model 🎙️ Converts speech to text and speaks results back💡 Built for real-time, intuitive healthcare support",
+    tags: ["Python", "Gradio", "Groq API", "meta-llama/llama-4-maverick", "python-dotenv"],
+  },
+  {
+    title: "✨ RAG-Powered AI System (Real-Time Document Retrieval)",
+    description:
+      "A cutting-edge Retrieval-Augmented Generation (RAG) prototype that delivers real-time, context-aware, and factually accurate responses from stored documents — outperforming standard LLMs in precision.",
+    tags: ["Mistral-7B-Instruct (Hugging Face)", "FAISS", "Sentence-Transformers (all-MiniLM-L6-v2)", "Custom prompt engineering", "PDF ingestion for real-time query resolution"],
+  },
+  {
+    title: "🧾💬 CerebroZen – Talk to Your Docs for Free",
+    description:
+      "A powerful, real-time AI assistant that lets users chat with their PDF documents — no subscriptions, no limits. Just upload, ask, and get accurate answers instantly.💬 Ask unlimited questions about any uploaded PDF⚡ Fast, intelligent, and 100% free — no API/token restrictions 🌐 Built for everyone — accessible, open-source, and user-friendly",
     tags: ["Microservices", "SonarQube", "Grafana"],
   },
   {
-    title: "AWS Serverless App",
+    title: " 🤖 RAG-Based Smart Assistant (AI-Powered Document Retrieval)",
     description:
-      "API Gateway, Terraform, GitHub Actions for serverless application deployment.",
-    tags: ["Serverless", "API Gateway", "GitHub Actions"],
+      "An advanced AI assistant that retrieves and understands real-time data from structured and unstructured sources using RAG (Retrieval-Augmented Generation) — delivering context-rich, accurate answers instantly.🔎 Retrieves & processes web/document data in real-time  💬 Powered by Google Gemini Pro for reliable, fact-based responses ⚡ Seamless UI with dark mode for instant user interaction 📚 Ideal for customer support, research, legal, and enterprise use",
+    tags: ["Google Gemini Pro", "Hugging Face (all-MiniLM-L6-v2)", "UnstructuredURLLoader", "RecursiveCharacterTextSplitter", "Streamlit (Dark Mode)", "Python, LangChain"],
   },
   {
-    title: "Automated Cloud Infrastructure with Terraform & Ansible",
+    title: "🛍️ AI-Powered Retail Inventory & Profit Forecasting Assistant",
     description:
-      "Automated deployment of AWS EC2 instances, security groups, and networking using Terraform, and seamless server configuration with Ansible.",
-    tags: [
-      "Terraform",
-      "Ansible",
-      "AWS EC2",
-      "VPC",
-      "Security Groups",
-      "Jenkins (CI/CD)",
-    ],
-  },
-  {
-    title: "Resource Manager - Real-time CPU Monitoring and Analysis",
-    description:
-      "A real-time CPU monitoring and analysis tool offering live visualizations, critical alerts, historical trends, and process tracking, all containerized with Docker.",
-    tags: ["Python", "Docker", "Grafana"],
-  },
-  {
-    title: "Todo App Deployment on Kubernetes",
-    description:
-      "A Todo App built with React and Firebase for real-time storage, containerized using Docker, and deployed on Docker Hub.",
-    tags: ["Docker", "Kubernetes", "Docker Hub"],
+      "A next-gen AI application that connects directly to retail databases and allows store owners to ask natural language questions about stock levels, pricing, profit forecasting, and discount impacts — all in real-time.   🧾 Understands complex queries like:“How many white Nike T-shirts in L size are in stock?”  “If I sell all Levi’s shirts tomorrow with a 10% discount, how much profit will I make?”  💡 Gives instant insights using SQL query generation powered by Google Gemini Pro + LangChain  📊 Built for retail chains to optimize inventory, plan discounts, and forecast revenue intelligently",
+    tags: ["Google Gemini Pro", "FewShotPromptTemplate", "SemanticSimilarityExampleSelector", "SQLDatabase", "Streamlit (Dark Mode)", "Python, Hugging Face (all-MiniLM-L6-v2)", "MySQL", "ChromaDB", "Python, Fast SQL-based reasoning", "Streamlit"],
   },
 ];
 
-// Define certifications data
 const certifications = [
   {
-    title: "DevOps Master Class (Linux, Python, GitHub)",
-    issuer: "TrainWithShubham",
-    date: "2024",
+    title: "Certified Django Developer",
+    issuer: "Udemy",
+    date: "February 2024",
+    credentialId: "UC-5afe20bd-fd34-460b-9ab7-7d9159facfa0",
   },
   {
-    title: "Linux: The Complete Guide",
+    title: "Aptech Certified Python Application Developer",
+    issuer: "Aptech Pakistan",
+    date: "December 2023",
+  },
+  {
+    title: "Python Programmer",
+    issuer: "DataCamp",
+    date: "December 2022",
+    credentialId: "0c0c27e0a18ab59bae8fa3b2b2cc3529f4588f0d",
+  },
+  {
+    title: "Python - Object Oriented Programming",
     issuer: "Udemy",
     date: "2024",
+    credentialId: "UC-ebc587d8-57b8-4b5d-8bed-7d857e877eb3",
   },
   {
-    title: "AWS Essentials: A Complete Beginner's Guide",
+    title: "Python And Flask Framework Complete",
     issuer: "Udemy",
-    date: "2025",
+    date: "2024",
+    credentialId: "UC-55425efa-3688-4059-8e06-d34ef1bdc986",
   },
   {
-    title: "Mastering AWS Serverless: Hands-On with Core AWS Services",
-    issuer: "Udemy",
-    date: "2025",
+    title: "Python Data Structures",
+    issuer: "Coursera",
+    date: "2024",
+    credentialId: "RWBYFK9C3BKC",
+  },
+  {
+    title: "Python For Everybody Capstone",
+    issuer: "Coursera",
+    date: "2024",
+    credentialId: "GY3CM53PWYU5",
+  },
+  {
+    title: "Python For Web Data",
+    issuer: "Coursera",
+    date: "2024",
+    credentialId: "LXZ5MA3ZXPFQ",
+  },
+  {
+    title: "Python Programming Basic To Advance",
+    issuer: "Coursera",
+    date: "2024",
+    credentialId: "LC6X8TENNFUM",
   },
 ];
+
 
 // Tag color configurations
 const tagColors = [
@@ -196,8 +229,8 @@ export default function Portfolio() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/Muhammad_Anas_Naeem_CV.pdf";
-    link.download = "Muhammad_Anas_Naeem_CV.pdf";
+    link.href = "/Abdul-Rafay-Atiq.docx";
+    link.download = "Abdul-Rafay-Atiq.docx";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -219,7 +252,7 @@ export default function Portfolio() {
         <div className='max-w-6xl mx-auto px-4 md:px-6'>
           <div className='flex items-center justify-between h-16'>
             <div className='font-bold text-lg text-blue-600 dark:text-blue-400'>
-              AN
+              AR
             </div>
 
             <div className='flex items-center space-x-6'>
@@ -320,18 +353,15 @@ export default function Portfolio() {
               className='text-center md:text-left text-white md:w-1/2 mb-10 md:mb-0 z-10'
             >
               <span className='inline-block px-4 py-1 mb-4 text-sm font-medium text-blue-300 bg-blue-900/50 rounded-full border border-blue-400/30 backdrop-blur-sm'>
-                DevOps Specialist
+                AI & Backend Specialist
               </span>
               <h1 className='text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200'>
-                Muhammad Anas Naeem
+                Abdul Rafay Atiq
               </h1>
               <p className='text-xl text-blue-100 mb-6 font-medium'>
-                DevOps Engineer
+                AI Software Engineer
               </p>
               <p className='text-blue-100 max-w-lg mb-8 leading-relaxed'>
-                Building scalable, automated infrastructure and optimizing
-                deployment pipelines to power the next generation of
-                applications.
               </p>
               <div className='flex flex-wrap justify-center md:justify-start gap-4'>
                 <button
@@ -383,7 +413,7 @@ export default function Portfolio() {
               {/* Merged Social Icons with Labels */}
               <div className='mt-8 flex justify-center md:justify-start space-x-6'>
                 <a
-                  href='https://github.com/anasnaeem80'
+                  href='https://github.com/itsmerafay'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200'
@@ -398,7 +428,7 @@ export default function Portfolio() {
                   <span>GitHub</span>
                 </a>
                 <a
-                  href='https://www.linkedin.com/in/muhammad-anas-naeem-832229246'
+                  href='https://www.linkedin.com/in/abdul-rafay-atiq-699008230/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200'
@@ -413,7 +443,7 @@ export default function Portfolio() {
                   <span>LinkedIn</span>
                 </a>
                 <a
-                  href='mailto:anas.naeem.998@gmail.com'
+                  href='mailto:abdulrafayatiq.03@gmail.com'
                   className='flex items-center gap-2 text-blue-200 hover:text-white transition-colors duration-200'
                 >
                   <svg
@@ -436,18 +466,15 @@ export default function Portfolio() {
             >
               <div className='relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm transform hover:scale-105 transition duration-300'>
                 <div className='absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-600/20'></div>
-                {/* Using your own profile image */}
-                <img
-                  src='/profile.jpg'
-                  alt='Muhammad Anas Naeem'
-                  className='w-full h-full object-cover'
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/api/placeholder/300/300";
-                  }}
+
+                <Image
+                  src="/images/profile.jpeg"
+                  alt="Profile"
+                  width={300}
+                  height={300}
                 />
 
-                {/* Glowing effect */}
+                {/* Glowing effects */}
                 <div className='absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full blur opacity-30 group-hover:opacity-60 transition duration-1000 animate-pulse'></div>
               </div>
             </motion.div>
@@ -495,25 +522,27 @@ export default function Portfolio() {
             <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
               <div className='p-6 md:p-8'>
                 <p className='text-gray-700 leading-relaxed dark:text-gray-300'>
-                  I&apos;m a DevOps enthusiast with 1.5 years of hands-on
-                  experience in Linux OS, AWS, solution architecture, Docker,
-                  Kubernetes, Jenkins, Terraform, and CI/CD practices. I&apos;m
-                  passionate about leveraging these tools to build efficient,
-                  scalable, and resilient infrastructure. Currently, I&apos;m
-                  seeking a Junior DevOps Engineer role where I can continue
-                  growing and contributing to impactful engineering teams.
+                  I’m <strong>Abdul Rafay Atiq</strong>, an AI Software Engineer driven by a deep passion for solving real-world problems through intelligent, scalable, and user-focused technology.
                 </p>
                 <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
-                  My goal is to contribute to teams by streamlining workflows,
-                  automating processes, and enabling smoother development and
-                  deployment cycles. I believe in the power of automation and
-                  infrastructure as code to solve complex operational
-                  challenges.
+                  My journey merges the depth of <em>artificial intelligence</em> with the robustness of <em>backend engineering</em> — enabling me to build systems that not only perform but evolve.
                 </p>
+                <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
+                  I’ve developed impactful applications like multimodal health assistants, RAG-based AI retrieval tools, community-driven automotive platforms, real-time ecommerce systems, and intelligent gear management tools — each engineered for performance, clarity, and scalability.
+                </p>
+                <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
+                  I specialize in technologies such as <strong>LangChain, Gemini Pro, Mistral, OpenCV, Django REST, PostgreSQL, Docker</strong>, and more — combining deep-tech with clean design to create software that listens, learns, and adapts.
+                </p>
+                <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
+                  &quot;I engineer software that doesn&#39;t just work — it engages, scales, and delivers lasting impact.&quot;
+                </p>
+
               </div>
             </div>
           </motion.div>
         </motion.section>
+
+
 
         {/* Experience Section */}
         <motion.section
@@ -535,111 +564,124 @@ export default function Portfolio() {
             </div>
           </motion.div>
 
-          {/* Existing Experience: Projects */}
-          <motion.div variants={item}>
-            <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+ 
+
+          <motion.div variants={item} className="mb-6">
+          <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
               <div className='p-6 md:p-8'>
                 <div className='border-l-4 border-blue-500 pl-4 py-1'>
                   <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
-                    DevOps Engineer (Projects)
+                    Software Engineer - Devroute (SMC-PVT) Ltd.
                   </h3>
                   <p className='text-gray-600 mt-1 dark:text-gray-400'>
-                    Self-directed projects & hands-on learning
+                    Karachi Division, Sindh, Pakistan
                   </p>
                   <p className='text-gray-500 text-sm mt-1 dark:text-gray-500'>
-                    2023 - Present
+                    July 2024 - Present
                   </p>
                 </div>
                 <div className='mt-6'>
                   <p className='text-gray-700 dark:text-gray-300'>
-                    Currently working on various hands-on projects in DevOps and
-                    Cloud deployment to build practical experience with
-                    industry-standard tools and methodologies.
+                    Key Achievements & Responsibilities:
                   </p>
-                  <ul className='mt-4 space-y-2 text-gray-700 dark:text-gray-300'>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Automating infrastructure deployment with Terraform and
-                        AWS
-                      </span>
+                  <ul className='mt-4 space-y-2 text-gray-700 dark:text-gray-300 list-disc list-inside'>
+                    <li>
+                      Achieved 30% reduction in query execution time by implementing advanced query optimization techniques, including query refactoring, ensuring seamless database performance.
                     </li>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Building CI/CD pipelines with Jenkins and GitHub Actions
-                      </span>
+                    <li>
+                      Automated repetitive tasks using custom Python scripts, resulting in 40% time savings across development and deployment pipelines.
                     </li>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Containerizing applications with Docker and Kubernetes
-                      </span>
+                    <li>
+                      Designed and developed robust RESTful APIs using Django REST Framework, ensuring high scalability and 99.9% uptime for data-intensive applications.
+                    </li>
+                    <li>
+                      Implemented JWT-based authentication and token management systems, enhancing API security and performance.
+                    </li>
+                    <li>
+                      Leveraged TensorFlow and YOLO models to implement real-time object detection and classification, improving system efficiency for AI-driven projects.
+                    </li>
+                    <li>
+                      Developed scalable pipelines for computer vision applications using EfficientDet, enabling high accuracy and reduced inference time.
+                    </li>
+                    <li>
+                      Built and managed high-performance PostgreSQL database systems, streamlining complex queries to handle large datasets efficiently.
+                    </li>
+                    <li>
+                      Created automated data processing pipelines to clean and transform large datasets, reducing processing time by over 35%.
+                    </li>
+                    <li>
+                      Improved system scalability by optimizing backend architectures, reducing API response times by up to 50% under high load conditions.
+                    </li>
+                    <li>
+                      Successfully containerized applications using Docker, ensuring consistent environments across development and production.
+                    </li>
+                    <li>
+                      Resolved critical bottlenecks in legacy systems, resulting in significant performance improvements and reduced downtime.
                     </li>
                   </ul>
+                  <p className='mt-4 italic text-gray-600 dark:text-gray-400'>
+                    Technologies used: Python, Django, Django REST Framework, TensorFlow, YOLO, PostgreSQL, OpenCV, Docker
+                  </p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* New Experience: 303 Inc. */}
-          <motion.div variants={item} className='mt-8'>
-            <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
-              <div className='p-6 md:p-8'>
-                <div className='border-l-4 border-blue-500 pl-4 py-1'>
-                  <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
-                    DevOps Intern — 303 Inc.
-                  </h3>
-                  <p className='text-gray-600 mt-1 dark:text-gray-400'>
-                    Mar 2025 – May 2025
+          <motion.div variants={item} className="mb-6">
+          <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+            <div className='p-6 md:p-8'>
+              <div className='border-l-4 border-blue-500 pl-4 py-1'>
+                <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+                  Associate Software Engineer - Tassaract
+                </h3>
+                <p className='text-gray-600 mt-1 dark:text-gray-400'>
+                  Software Development || Python Development || Flask Framework || MySQL Database || RESTful APIs
+                </p>
+                <p className='text-gray-500 text-sm mt-1 dark:text-gray-500'>
+                  November 2023 - July 2024
+                </p>
+              </div>
+              <div className='mt-6'>
+                <p className='text-gray-700 dark:text-gray-300'>
+                <li>Developed and maintained robust backend systems using Flask framework, ensuring seamless integration with MySQL databases for efficient data storage and retrieval. </li><br></br>  <li>Designed and implemented RESTful APIs that facilitated scalable and secure communication between frontend and backend components.</li>
+                <li>Collaborated closely with cross-functional teams to analyze requirements and deliver optimized Python-based solutions, enhancing application performance and maintainability. </li><br></br> <li>Contributed to code reviews and automated testing to improve code quality and deployment reliability.</li>
                   </p>
-                </div>
-                <div className='mt-6'>
-                  <p className='text-gray-700 dark:text-gray-300'>
-                    As a DevOps Intern at 303 Inc., I applied and refined my
-                    DevOps skills by contributing to real-world infrastructure
-                    and CI/CD workflows. This internship built on my 1.5 years
-                    of DevOps experience.
-                  </p>
-                  <ul className='mt-4 space-y-2 text-gray-700 dark:text-gray-300'>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Streamlined CI/CD pipelines using Jenkins and GitHub
-                        Actions
-                      </span>
-                    </li>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Automated infrastructure deployments with Terraform and
-                        Ansible
-                      </span>
-                    </li>
-                    <li className='flex items-start'>
-                      <span className='text-blue-500 mr-2 dark:text-blue-400'>
-                        •
-                      </span>
-                      <span>
-                        Monitored application and system health using Prometheus
-                        and Grafana
-                      </span>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
+
+        <motion.div variants={item} className="mb-6">
+        <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+            <div className='p-6 md:p-8'>
+              <div className='border-l-4 border-blue-500 pl-4 py-1'>
+                <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+                  Python Developer - The Disrupt Labs
+                </h3>
+                <p className='text-gray-600 mt-1 dark:text-gray-400'>
+                  Python Programming || Object Oriented Programming || Problem Solving || Flask | OpenCV
+                </p>
+                <p className='text-gray-500 text-sm mt-1 dark:text-gray-500'>
+                  June 2023 - July 2023
+                </p>
+              </div>
+              <div className='mt-6'>
+              <p className='text-gray-700 dark:text-gray-300'>
+              <ul className='list-disc list-inside space-y-2'>
+                <li>Contributed to Python development projects focusing on modular and object-oriented design principles to build maintainable and reusable codebases.</li>
+                <li>Developed web applications using Flask, integrating OpenCV for advanced computer vision features such as image processing and object detection.</li>
+                <li>Engaged in problem-solving activities to debug and optimize code performance. Collaborated in an agile environment to deliver timely software releases and improve application functionalities based on user feedback.</li>
+              </ul>
+              </p>
+
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+
+
+
         </motion.section>
 
         {/* Projects Section */}
@@ -708,106 +750,146 @@ export default function Portfolio() {
             ))}
           </motion.div>
         </motion.section>
-        {/* Skills Section */}
-        <motion.section
-          id='skills'
-          initial='hidden'
-          whileInView='show'
-          variants={container}
-          viewport={{ once: true }}
-          className='scroll-mt-20'
-        >
-          <motion.div variants={item}>
-            <div className='flex items-center gap-4 mb-8'>
-              <div className='bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50'>
-                <Brain className='w-6 h-6 text-blue-600 dark:text-blue-400' />
-              </div>
-              <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
-                Skills
-              </h2>
-            </div>
-          </motion.div>
-          <motion.div
-            variants={container}
-            className='grid grid-cols-1 md:grid-cols-3 gap-6'
-          >
-            <motion.div
-              variants={item}
-              className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
-            >
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
-                  Cloud & Infrastructure
-                </h3>
-                <div className='flex flex-wrap gap-2 justify-center'>
-                  {["AWS", "Terraform", "Ansible", "Linux"].map(
-                    (skill, index) => {
-                      const color = getTagColor(skill);
-                      return (
-                        <span
-                          key={index}
-                          className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
-                        >
-                          {skill}
-                        </span>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-            </motion.div>
 
-            <motion.div
-              variants={item}
-              className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
-            >
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
-                  Containerization
-                </h3>
-                <div className='flex flex-wrap gap-2 justify-center'>
-                  {["Docker", "Kubernetes", "Helm"].map((skill, index) => {
-                    const color = getTagColor(skill);
-                    return (
-                      <span
-                        key={index}
-                        className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
-                      >
-                        {skill}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-            </motion.div>
 
-            <motion.div
-              variants={item}
-              className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
-            >
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
-                  CI/CD & Monitoring
-                </h3>
-                <div className='flex flex-wrap gap-2 justify-center'>
-                  {["Jenkins", "GitHub Actions", "Prometheus", "Grafana"].map(
-                    (skill, index) => {
-                      const color = getTagColor(skill);
-                      return (
-                        <span
-                          key={index}
-                          className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
-                        >
-                          {skill}
-                        </span>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.section>
+
+
+
+{/* Skills Section */}
+<motion.section
+  id='skills'
+  initial='hidden'
+  whileInView='show'
+  variants={container}
+  viewport={{ once: true }}
+  className='scroll-mt-20'
+>
+  <motion.div variants={item}>
+    <div className='flex items-center gap-4 mb-8'>
+      <div className='bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50'>
+        <Brain className='w-6 h-6 text-blue-600 dark:text-blue-400' />
+      </div>
+      <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
+        Skills
+      </h2>
+    </div>
+  </motion.div>
+
+  <motion.div
+    variants={container}
+    className='grid grid-cols-1 md:grid-cols-3 gap-6'
+  >
+    {/* Backend & APIs */}
+    <motion.div
+      variants={item}
+      className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
+    >
+      <div className='p-6'>
+        <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
+          Backend & APIs
+        </h3>
+        <div className='flex flex-wrap gap-2 justify-center'>
+          {["Django", "Django REST Framework", "Flask", "FastAPI", "Python"].map((skill, index) => {
+            const color = getTagColor(skill);
+            return (
+              <span
+                key={index}
+                className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+              >
+                {skill}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </motion.div>
+
+    {/* AI & Automation */}
+    <motion.div
+      variants={item}
+      className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
+    >
+      <div className='p-6'>
+        <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
+          AI, ML & Automation
+        </h3>
+        <div className='flex flex-wrap gap-2 justify-center'>
+          {["OpenCV", "YOLOv5", "Transformers", "Pandas", "NumPy", "Matplotlib"].map((skill, index) => {
+            const color = getTagColor(skill);
+            return (
+              <span
+                key={index}
+                className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+              >
+                {skill}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </motion.div>
+
+    {/* DevOps & Tools */}
+    <motion.div
+      variants={item}
+      className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
+    >
+      <div className='p-6'>
+        <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
+          DevOps & Tools
+        </h3>
+        <div className='flex flex-wrap gap-2 justify-center'>
+          {["Git", "GitHub Actions", "Docker", "Postman", "Linux", "VSCode"].map((skill, index) => {
+            const color = getTagColor(skill);
+            return (
+              <span
+                key={index}
+                className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+              >
+                {skill}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </motion.div>
+
+    {/* Database & Caching */}
+    <motion.div
+      variants={item}
+      className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
+    >
+      <div className='p-6'>
+        <h3 className='text-xl font-semibold text-gray-800 mb-4 text-center dark:text-white'>
+          Database & Caching
+        </h3>
+        <div className='flex flex-wrap gap-2 justify-center'>
+          {["PostgreSQL", "Redis", "SQLite", "MySQL"].map((skill, index) => {
+            const color = getTagColor(skill);
+            return (
+              <span
+                key={index}
+                className={`px-3 py-1 ${color.bg} ${color.text} rounded-full text-xs ${color.darkBg} ${color.darkText}`}
+              >
+                {skill}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    </motion.div>
+  </motion.div>
+</motion.section>
+
+
+
+
+
+
+
+
+
+
 
         {/* Certifications Section */}
         <motion.section
@@ -857,57 +939,118 @@ export default function Portfolio() {
           </motion.div>
         </motion.section>
 
-        {/* Education Section */}
-        <motion.section
-          id='education'
-          initial='hidden'
-          whileInView='show'
-          variants={container}
-          viewport={{ once: true }}
-          className='scroll-mt-20'
-        >
-          <motion.div variants={item}>
-            <div className='flex items-center gap-4 mb-8'>
-              <div className='bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50'>
-                <GraduationCap className='w-6 h-6 text-blue-600 dark:text-blue-400' />
-              </div>
-              <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
-                Education
-              </h2>
+
+
+
+
+{/* Education Section */}
+<motion.section
+  id='education'
+  initial='hidden'
+  whileInView='show'
+  variants={container}
+  viewport={{ once: true }}
+  className='scroll-mt-20'
+>
+  <motion.div variants={item}>
+    <div className='flex items-center gap-4 mb-8'>
+      <div className='bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50'>
+        <GraduationCap className='w-6 h-6 text-blue-600 dark:text-blue-400' />
+      </div>
+      <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
+        Education
+      </h2>
+    </div>
+  </motion.div>
+
+  {/* UBIT */}
+  <motion.div variants={item}>
+    <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+      <div className='p-6 md:p-8'>
+        <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
+          <div>
+            <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+              BS in Computer Software Engineering
+            </h3>
+            <p className='text-gray-600 mt-1 dark:text-gray-400'>
+              University of Karachi – UBIT (Department of Computer Science)
+            </p>
+          </div>
+          <div className='mt-2 md:mt-0'>
+            <div className='inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400'>
+              Jan 2022 – Jan 2025
             </div>
-          </motion.div>
-          <motion.div variants={item}>
-            <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
-              <div className='p-6 md:p-8'>
-                <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
-                  <div>
-                    <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
-                      BS Software Engineering
-                    </h3>
-                    <p className='text-gray-600 mt-1 dark:text-gray-400'>
-                      University of Karachi, Department of Computer Science
-                    </p>
-                  </div>
-                  <div className='mt-2 md:mt-0'>
-                    <div className='inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400'>
-                      2022 - Active
-                    </div>
-                  </div>
-                </div>
-                <div className='mt-6'>
-                  <p className='text-gray-700 dark:text-gray-300'>
-                    Studying Software Engineering with a focus on DevOps
-                    practices, cloud computing, and modern software development
-                    methodologies.
-                  </p>
-                  <p className='text-gray-700 mt-2 dark:text-gray-300'>
-                    <strong>Location:</strong> Karachi, Pakistan
-                  </p>
-                </div>
-              </div>
+          </div>
+        </div>
+        <div className='mt-6'>
+          <p className='text-gray-700 dark:text-gray-300'>
+          Engineering robust digital ecosystems with a battle-hardened grip on backend systems, scalable architectures, and future-ready systems + AI practices.</p>
+          <p className='text-gray-700 mt-2 dark:text-gray-300'>
+            <strong>Skills:</strong> Problem Solving · Presentations · Software Development
+          </p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+
+  {/* Adamjee College */}
+  <motion.div variants={item} className='mt-6'>
+    <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+      <div className='p-6 md:p-8'>
+        <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
+          <div>
+            <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+              Intermediate in Pre-Engineering
+            </h3>
+            <p className='text-gray-600 mt-1 dark:text-gray-400'>
+              Adamjee Govt. Science College
+            </p>
+          </div>
+          <div className='mt-2 md:mt-0'>
+            <div className='inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400'>
+              Grade: 91%
             </div>
-          </motion.div>
-        </motion.section>
+          </div>
+        </div>
+        <div className='mt-6'>
+          <p className='text-gray-700 dark:text-gray-300'>
+            Focused on Mathematics, Physics, and Chemistry with a strong academic foundation for engineering disciplines.
+          </p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+
+  {/* Matriculation */}
+  <motion.div variants={item} className='mt-6'>
+    <div className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'>
+      <div className='p-6 md:p-8'>
+        <div className='flex flex-col md:flex-row md:items-center md:justify-between'>
+          <div>
+            <h3 className='text-xl font-semibold text-gray-800 dark:text-white'>
+              Matriculation (Science)
+            </h3>
+            <p className='text-gray-600 mt-1 dark:text-gray-400'>
+              S.M. Public Academy C-5
+            </p>
+          </div>
+          <div className='mt-2 md:mt-0'>
+            <div className='inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm dark:bg-blue-900/50 dark:text-blue-400'>
+              Grade: 90%
+            </div>
+          </div>
+        </div>
+        <div className='mt-6'>
+          <p className='text-gray-700 dark:text-gray-300'>
+            Strong academic base developed in Mathematics, Computer, and Science at the secondary level.
+          </p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+</motion.section>
+
+
 
         {/* Contact Section */}
         <motion.section
@@ -948,7 +1091,7 @@ export default function Portfolio() {
                         Email
                       </p>
                       <p className='text-gray-800 dark:text-gray-200'>
-                        anas.naeem.998@gmail.com
+                        abdulrafayatiq.03@gmail.com
                       </p>
                     </div>
                   </li>
@@ -959,7 +1102,10 @@ export default function Portfolio() {
                         Phone
                       </p>
                       <p className='text-gray-800 dark:text-gray-200'>
-                        +92 324 2009744
+                        +92 320 8331445
+                      </p>
+                      <p className='text-gray-800 dark:text-gray-200'>
+                        +92 334 0725087
                       </p>
                     </div>
                   </li>
@@ -1072,10 +1218,10 @@ export default function Portfolio() {
         <div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             <div>
-              <h3 className='text-2xl font-bold mb-4'>Muhammad Anas Naeem</h3>
+              <h3 className='text-2xl font-bold mb-4'>Abdul Rafay Atiq</h3>
               <p className='text-gray-400'>
-                DevOps Engineer passionate about creating scalable and efficient
-                infrastructure solutions.
+              Architecting intelligent backend ecosystems with Python Frameworks And Eco System, and AI blending automation, performance, and cloud-native design to shape the future of scalable tech.
+
               </p>
             </div>
             <div>
@@ -1097,7 +1243,7 @@ export default function Portfolio() {
               <h3 className='text-lg font-semibold mb-4'>Get Connected</h3>
               <div className='flex space-x-4'>
                 <a
-                  href='https://github.com/anasnaeem80'
+                  href='https://github.com/itsmerafay'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-gray-400 hover:text-white transition duration-200'
@@ -1105,7 +1251,7 @@ export default function Portfolio() {
                   <Github className='w-6 h-6' />
                 </a>
                 <a
-                  href='https://www.linkedin.com/in/muhammad-anas-naeem-832229246'
+                  href='https://www.linkedin.com/in/abdul-rafay-atiq-699008230/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='text-gray-400 hover:text-white transition duration-200'
@@ -1113,7 +1259,7 @@ export default function Portfolio() {
                   <Linkedin className='w-6 h-6' />
                 </a>
                 <a
-                  href='mailto:anas.naeem.998@gmail.com'
+                  href='mailto:abdulrafayatiq.03@gmail.com'
                   className='text-gray-400 hover:text-white transition duration-200'
                 >
                   <Mail className='w-6 h-6' />
@@ -1123,7 +1269,7 @@ export default function Portfolio() {
           </div>
           <div className='border-t border-gray-800 mt-8 pt-8 text-center text-gray-400'>
             <p>
-              © {new Date().getFullYear()} Muhammad Anas Naeem. All rights
+              © {new Date().getFullYear()} Abdul Rafay Atiq. All rights
               reserved.
             </p>
           </div>
