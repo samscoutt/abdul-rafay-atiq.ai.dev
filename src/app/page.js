@@ -229,8 +229,8 @@ export default function Portfolio() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/Abdul-Rafay-Atiq.docx";
-    link.download = "Abdul-Rafay-Atiq.docx";
+    link.href = "/Abdul-Rafay-Atiq-2025.pdf";
+    link.download = "Abdul-Rafay-Atiq.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
