@@ -22,13 +22,13 @@ const projects = [
     title: "🧠🛒 AI-Driven CRM + Marketplace for PPE & Eyewear Fitting (Milestone Project)",
     description:
       "A large-scale, AI-powered CRM integrated with a marketplace for PPE and eyewear, featuring an intelligent recommendation engine that uses facial scans to match employees with the perfect eyewear — by brand, size, and fit — with high precision.🧠 Uses Google’s Mesh 478-point model + OpenCV for facial landmark detection🛍️ Includes a complete marketplace module for PPE and eyewear products 🤖 AI engine recommends eyewear fit per user’s face geometry 🧩 Built for enterprises needing scalable employee onboarding + gear allocation. Other than that it's a full fledged large scale application that encompasses encompasses more than just storing customer data. It integrates all business processes, communication channels, and departments that interact with employes, primarily labours and service. It uses AI and advanced analytics to offer real-time reporting and got separate sections of employee | partner | admin | superadmin" ,
-    tags: ["Python", "Redis", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub" ],
+    tags: ["Python", "Redis", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub", "firebase", "live notifications" ],
   },
   {
     title: "🏎️📲 – Social Commerce Platform for Car & Bike Enthusiasts",
     description:
       "🚘 Buy, Sell & List: Post listings for cars, bikes, and parts with images, specs, and pricing🧑‍🤝‍🧑 Auto Communities: Create & join interest-based groups (e.g. EV lovers, 4x4 fans, classic car collectors) 🎥 Live Broadcasting: Stream live from car meets or garages — just like Instagram Live💬 Real-Time Chat: 1-on-1 DMs, group chats, & threaded discussions 📣 Event Boards: Organize or RSVP to car shows, races, or meetups👤 Profile System: Follow users, view timelines, share builds, and update car collections 🔍 Search Boosting: Paid profile boosting and featured listings — rank higher in search🛡️ Role-Based Groups: Full role control (Owner, Admin, Member) in each community 📊 Dashboard Analytics: Track listing views, engagement, and reach🎯 Personalized Feed: Posts, stories, listings, and events based on your niche and interests" ,
-    tags: ["Python", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub" ],
+    tags: ["Python", "Docker", "Django", "Django rest framework", "PostgresQL", "Artificial Intelligence", "scalable API architecture", "Facial data processing", "python-dotenv", "opencv", "stripe", "Git", "GitHub", "firebase", "live notifications" ],
   },
 
   {
@@ -53,19 +53,31 @@ const projects = [
     title: "🧾💬 CerebroZen – Talk to Your Docs for Free",
     description:
       "A powerful, real-time AI assistant that lets users chat with their PDF documents — no subscriptions, no limits. Just upload, ask, and get accurate answers instantly.💬 Ask unlimited questions about any uploaded PDF⚡ Fast, intelligent, and 100% free — no API/token restrictions 🌐 Built for everyone — accessible, open-source, and user-friendly",
-    tags: ["Microservices", "SonarQube", "Grafana"],
+    tags: [
+      "streamlit",
+      "langchain",
+      "PyPDF2",
+      "python-dotenv",
+      "faiss-cpu",
+      "streamlit-extras",
+      "sentence-transformers",
+      "langchain-google-genai",
+      "langchain-huggingface",
+      "langchain-community",
+      "langchain-experimental"
+  ],
   },
   {
     title: " 🤖 RAG-Based Smart Assistant (AI-Powered Document Retrieval)",
     description:
       "An advanced AI assistant that retrieves and understands real-time data from structured and unstructured sources using RAG (Retrieval-Augmented Generation) — delivering context-rich, accurate answers instantly.🔎 Retrieves & processes web/document data in real-time  💬 Powered by Google Gemini Pro for reliable, fact-based responses ⚡ Seamless UI with dark mode for instant user interaction 📚 Ideal for customer support, research, legal, and enterprise use",
-    tags: ["Google Gemini Pro", "Hugging Face (all-MiniLM-L6-v2)", "UnstructuredURLLoader", "RecursiveCharacterTextSplitter", "Streamlit (Dark Mode)", "Python, LangChain"],
+    tags: ["Google Gemini Pro", "Hugging Face (all-MiniLM-L6-v2)", "UnstructuredURLLoader", "RecursiveCharacterTextSplitter", "Streamlit (Dark Mode)", "Python", "LangChain"],
   },
   {
     title: "🛍️ AI-Powered Retail Inventory & Profit Forecasting Assistant",
     description:
       "A next-gen AI application that connects directly to retail databases and allows store owners to ask natural language questions about stock levels, pricing, profit forecasting, and discount impacts — all in real-time.   🧾 Understands complex queries like:“How many white Nike T-shirts in L size are in stock?”  “If I sell all Levi’s shirts tomorrow with a 10% discount, how much profit will I make?”  💡 Gives instant insights using SQL query generation powered by Google Gemini Pro + LangChain  📊 Built for retail chains to optimize inventory, plan discounts, and forecast revenue intelligently",
-    tags: ["Google Gemini Pro", "FewShotPromptTemplate", "SemanticSimilarityExampleSelector", "SQLDatabase", "Streamlit (Dark Mode)", "Python, Hugging Face (all-MiniLM-L6-v2)", "MySQL", "ChromaDB", "Python, Fast SQL-based reasoning", "Streamlit"],
+    tags: ["Google Gemini Pro", "FewShotPromptTemplate", "SemanticSimilarityExampleSelector", "SQLDatabase", "Streamlit (Dark Mode)", "Python", "Hugging Face (all-MiniLM-L6-v2)", "MySQL", "ChromaDB", "Python", "Fast SQL-based reasoning", "Streamlit"],
   },
 ];
 
@@ -1053,158 +1065,7 @@ export default function Portfolio() {
 
 
         {/* Contact Section */}
-        <motion.section
-          id='contact'
-          initial='hidden'
-          whileInView='show'
-          variants={container}
-          viewport={{ once: true }}
-          className='scroll-mt-20'
-        >
-          <motion.div variants={item}>
-            <div className='flex items-center gap-4 mb-8'>
-              <div className='bg-blue-100 p-3 rounded-lg dark:bg-blue-900/50'>
-                <Phone className='w-6 h-6 text-blue-600 dark:text-blue-400' />
-              </div>
-              <h2 className='text-3xl font-bold text-gray-800 dark:text-white'>
-                Contact
-              </h2>
-            </div>
-          </motion.div>
-          <motion.div
-            variants={container}
-            className='grid grid-cols-1 md:grid-cols-2 gap-6'
-          >
-            <motion.div
-              variants={item}
-              className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
-            >
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-800 mb-4 dark:text-white'>
-                  Get In Touch
-                </h3>
-                <ul className='space-y-4'>
-                  <li className='flex items-start'>
-                    <Mail className='w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400' />
-                    <div>
-                      <p className='text-gray-600 text-sm dark:text-gray-400'>
-                        Email
-                      </p>
-                      <p className='text-gray-800 dark:text-gray-200'>
-                        abdulrafayatiq.03@gmail.com
-                      </p>
-                    </div>
-                  </li>
-                  <li className='flex items-start'>
-                    <Phone className='w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400' />
-                    <div>
-                      <p className='text-gray-600 text-sm dark:text-gray-400'>
-                        Phone
-                      </p>
-                      <p className='text-gray-800 dark:text-gray-200'>
-                        +92 320 8331445
-                      </p>
-                      <p className='text-gray-800 dark:text-gray-200'>
-                        +92 334 0725087
-                      </p>
-                    </div>
-                  </li>
-                  <li className='flex items-start'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                      className='w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
-                      />
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
-                      />
-                    </svg>
-                    <div>
-                      <p className='text-gray-600 text-sm dark:text-gray-400'>
-                        Location
-                      </p>
-                      <p className='text-gray-800 dark:text-gray-200'>
-                        Karachi, Pakistan
-                      </p>
-                    </div>
-                  </li>
-                  <li className='flex items-start'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                      className='w-5 h-5 text-blue-600 mr-3 mt-1 dark:text-blue-400'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129'
-                      />
-                    </svg>
-                    <div>
-                      <p className='text-gray-600 text-sm dark:text-gray-400'>
-                        Languages
-                      </p>
-                      <p className='text-gray-800 dark:text-gray-200'>
-                        Urdu, English
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
 
-            <motion.div
-              variants={item}
-              className='bg-white rounded-xl shadow-lg overflow-hidden dark:bg-gray-800'
-            >
-              <div className='p-6'>
-                <h3 className='text-xl font-semibold text-gray-800 mb-4 dark:text-white'>
-                  Send Message
-                </h3>
-                <form>
-                  <div className='mb-4'>
-                    <input
-                      type='text'
-                      placeholder='Your Name'
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400'
-                    />
-                  </div>
-                  <div className='mb-4'>
-                    <input
-                      type='email'
-                      placeholder='Your Email'
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400'
-                    />
-                  </div>
-                  <div className='mb-4'>
-                    <textarea
-                      placeholder='Your Message'
-                      rows='4'
-                      className='w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400'
-                    ></textarea>
-                  </div>
-                  <button className='w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-500 transition duration-200 dark:bg-blue-700 dark:hover:bg-blue-600'>
-                    Send Message
-                  </button>
-                </form>
-              </div>
-            </motion.div>
-          </motion.div>
-        </motion.section>
       </div>
 
       {/* Footer */}
