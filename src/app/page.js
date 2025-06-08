@@ -543,7 +543,7 @@ export default function Portfolio() {
                   I’ve developed impactful applications like multimodal health assistants, RAG-based AI retrieval tools, community-driven automotive platforms, real-time ecommerce systems, and intelligent gear management tools — each engineered for performance, clarity, and scalability.
                 </p>
                 <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
-                  I specialize in technologies such as <strong>LangChain, Gemini Pro, Mistral, OpenCV, Django REST, PostgreSQL, Docker</strong>, and more — combining deep-tech with clean design to create software that listens, learns, and adapts.
+                  I specialize in technologies such as <strong>LangChain, Gemini Pro, Mistral, OpenCV, Django REST, Flask, FastAPI, PostgreSQL, Docker</strong>, and more — combining deep-tech with clean design to create software that listens, learns, and adapts.
                 </p>
                 <p className='text-gray-700 leading-relaxed mt-4 dark:text-gray-300'>
                   &quot;I engineer software that doesn&#39;t just work — it engages, scales, and delivers lasting impact.&quot;
@@ -650,7 +650,7 @@ export default function Portfolio() {
                   Software Development || Python Development || Flask Framework || MySQL Database || RESTful APIs
                 </p>
                 <p className='text-gray-500 text-sm mt-1 dark:text-gray-500'>
-                  November 2023 - July 2024
+                  August 2023 - July 2024
                 </p>
               </div>
               <div className='mt-6'>
@@ -801,7 +801,7 @@ export default function Portfolio() {
           Backend & APIs
         </h3>
         <div className='flex flex-wrap gap-2 justify-center'>
-          {["Django", "Django REST Framework", "Flask", "FastAPI", "Python"].map((skill, index) => {
+          {["Django", "Django REST Framework", "Flask", "FastAPI", "Python", "Gradio", "JWT Authentication", "RESTful APIs", "Swagger", "WebSockets (Real-time communication)"].map((skill, index) => {
             const color = getTagColor(skill);
             return (
               <span
@@ -826,7 +826,7 @@ export default function Portfolio() {
           AI, ML & Automation
         </h3>
         <div className='flex flex-wrap gap-2 justify-center'>
-          {["OpenCV", "YOLOv5", "Transformers", "Pandas", "NumPy", "Matplotlib"].map((skill, index) => {
+          {["OpenCV", "YOLOv5", "Transformers", "Pandas", "NumPy", "Matplotlib", "EfficientDet", "Tensorflow","Pytorch", "Seaborn", "Langchain", "Meta LLaMA-4", "Groq API (multimodal)"].map((skill, index) => {
             const color = getTagColor(skill);
             return (
               <span
@@ -876,7 +876,7 @@ export default function Portfolio() {
           Database & Caching
         </h3>
         <div className='flex flex-wrap gap-2 justify-center'>
-          {["PostgreSQL", "Redis", "SQLite", "MySQL"].map((skill, index) => {
+          {["PostgreSQL", "Redis", "SQLite", "MySQL", "PostgresQl", "Django ORM", "Flask ORM", "SQLAlchemy"].map((skill, index) => {
             const color = getTagColor(skill);
             return (
               <span
